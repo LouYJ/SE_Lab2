@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <package name="default" namespace="/" extends="struts-default">
+    	<!-- 对主页的设置 -->
+    	<default-action-ref name="home"></default-action-ref>
+    	<action name="home">
+    		<result>/WEB-INF/content/index.jsp</result>
+    	</action>
+    	<!-- 通过作者查找相应图书的Action -->
+    	<action name="AuthorPro" class="action.authorAction">
+            <result name="success">/WEB-INF/content/menu.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>
+        <!-- 确认删除后执行删除Action -->
+        <action name="deleteAction" class="action.deleteAction">
+        	<result name="success">/WEB-INF/content/deleteSuccess.jsp</result>
+        	<result name="error">/WEB-INF/content/error.jsp</result>
+        </action>
+        <!-- 新增一本图书所执行的Action -->
+        <action name="insertBook" class="action.insertBook">
+        	<result name="newauthor">/WEB-INF/content/createAuthor.jsp</result>
+        	<result name="success">/WEB-INF/content/insertBookSuccess.jsp</result>
+        	<result name="error">/WEB-INF/content/existBook.jsp</result>
+        </action>
+        <!-- 新增作者的Action -->
+        <action name="insertAuthor" class="action.insertAuthor">
+        	<result name="success">/WEB-INF/content/insertAuthorSuccess.jsp</result>
+        </action>
+        <!-- 展示所有作者的Action -->
+        <action name="displayAuthors" class="action.displayAuthors">
+        	<result name="success">/WEB-INF/content/displayAuthors.jsp</result>
+        </action>
+        <!-- 展示所有图书的Action -->
+        <action name="displayBooks" class="action.displayBooks">
+        	<result name="success">/WEB-INF/content/displayBooks.jsp</result>
+        </action>
+        <!-- 更新图书信息的Action -->
+        <action name="upgradebook" class="action.upgradeBook">
+        	<result name="success">/WEB-INF/content/upgradeSuccess.jsp</result>
+        </action>
+        
+        <!-- 接下来的Action均用于网页跳转 -->
+        <action name="index">
+        	<result>/WEB-INF/content/index.jsp</result>
+        </action>
+        <action name="welcome">
+        	<result>/WEB-INF/content/welcome.jsp</result>
+        </action>
+        <action name="bookDetail">
+        	<result>/WEB-INF/content/bookDetail.jsp</result>
+        </action>
+        <action name="deleteQuery">
+        	<result>/WEB-INF/content/deleteQuery.jsp</result>
+        </action>
+        <action name="createBook">
+        	<result>/WEB-INF/content/createBook.jsp</result>
+        </action>
+        <action name="upgrade">
+        	<result>/WEB-INF/content/upgrade.jsp</result>
+        </action>
+        <!--  
+        <action name="*">
+            <result>/WEB-INF/content/{1}.jsp</result>
+        </action> 
+        -->  
+    </package>
+</struts>
